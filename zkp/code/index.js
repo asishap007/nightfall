@@ -352,15 +352,15 @@ async function checkForOldFiles(dir) {
     "\n\nIf you continue, these files will be deleted (except for the '.pcode' file and any '.code' dependencies).",
   );
 
-  const carryOn = await inquirer.prompt([
-    {
-      type: 'skip',
-      name: 'skip',
-      message: 'Continue with the trusted setup? y/n ',
-      choices: ['y', 'n'],
-    },
-  ]);
-  if (carryOn.skip !== 'y') return false;
+  // const carryOn = await inquirer.prompt([
+  //   {
+  //     type: 'skip',
+  //     name: 'skip',
+  //     message: 'Continue with the trusted setup? y/n ',
+  //     choices: ['y', 'n'],
+  //   },
+  // ]);
+  // if (carryOn.skip !== 'y') return false;
 
   return files;
 }
@@ -406,7 +406,7 @@ async function runSetup(a) {
     throw new Error("Incorrect backend or folder specified. Expected either 'pghr13' or 'gm17'.");
   }
 
-  let files = await checkForOldFiles(dir);
+  let files = true;
   if (files === false) {
     throw new Error('user cancelled the setup');
   }
@@ -510,15 +510,15 @@ async function allOrOne() {
     console.log('Be warned, this could take up to an hour!');
 
     // beep(2);
-    const carryOn = await inquirer.prompt([
-      {
-        type: 'yesno',
-        name: 'continue',
-        message: 'Continue?',
-        choices: ['y', 'n'],
-      },
-    ]);
-    if (carryOn.continue !== 'y') return;
+    // const carryOn = await inquirer.prompt([
+    //   {
+    //     type: 'yesno',
+    //     name: 'continue',
+    //     message: 'Continue?',
+    //     choices: ['y', 'n'],
+    //   },
+    // ]);
+    // if (carryOn.continue !== 'y') return;
 
     try {
       runSetupAll(a1); // we'll do all .code (or .pcode) files if no option is specified
