@@ -1,7 +1,13 @@
+
+os: osx
 language: node_js
 node_js:
   - 11
+services:
+  - docker  
 before_script:
   - cd ui && npm ci && cd ..
+  - ./install.sh
 script:
   - npm run lint
+  - ./zkp-demo-test.sh
