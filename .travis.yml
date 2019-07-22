@@ -6,7 +6,6 @@ node_js:
 services:
   - docker  
 before_script:
-  - cd ui && npm ci && cd ..
   - ./install.sh
 script:
   - npm run lint
