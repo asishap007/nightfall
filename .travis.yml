@@ -9,8 +9,8 @@ before_script:
   - dotdocker start
   - docker pull michaelconnor/zok:2Jan2019
   - cd ui && npm ci && cd ../
-  - cd zkp-utils && rm -rf node_modules && npm ci && \
-  - cd ../zkp && rm -rf node_modules && npm ci && \
+  - cd zkp-utils && npm ci && cd ../
+  - cd zkp && npm ci && cd ../
   - travis_wait npm run setup-all && cd ../
 script:
   - npm run lint
