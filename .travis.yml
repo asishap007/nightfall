@@ -8,7 +8,10 @@ before_script:
   - npm install -g dotdocker
   - dotdocker start
   - docker pull michaelconnor/zok:2Jan2019
-  - travis_wait 30 ./install.sh
+  - cd ui && npm ci && cd ../
+  - cd zkp-utils && rm -rf node_modules && npm ci && \
+  - cd ../zkp && rm -rf node_modules && npm ci && \
+  - travis_wait npm run setup-all && cd ../
 script:
   - npm run lint
   - ./zkp-demo-test.sh
