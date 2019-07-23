@@ -1,12 +1,17 @@
 
-os: osx
 language: node_js
 node_js:
   - 11
 services:
   - docker  
 before_script:
+  - npm install -g dotdocker
+  - dotdocker start
+  - docker pull michaelconnor/zok:2Jan2019
   - ./install.sh
 script:
   - npm run lint
   - ./zkp-demo-test.sh
+addons:
+  hosts:
+    - api.nightfall.docker
