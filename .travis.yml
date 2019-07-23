@@ -10,7 +10,7 @@ before_script:
   - docker pull michaelconnor/zok:2Jan2019
   - cd ui && npm ci && cd ../
   - cd zkp-utils && npm ci && cd ../
-  - cd zkp && npm ci && cd ../
+  - cd zkp && npm ci
   - travis_wait npm run setup-all && cd ../
 script:
   - npm run lint
