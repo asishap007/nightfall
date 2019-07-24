@@ -4,6 +4,8 @@ node_js:
   - 11
 services:
   - docker  
+env:
+  - TRAVIS_DEBUG_MODE=true
 before_script:
   - npm install -g dotdocker
   - dotdocker start
