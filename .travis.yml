@@ -1,5 +1,22 @@
+
 language: node_js
 node_js:
   - 11
+services:
+  - docker  
+env:
+  - TRAVIS_DEBUG_MODE=true
+before_script:
+  - npm install -g dotdocker
+  - dotdocker start
+  - docker pull michaelconnor/zok:2Jan2019
+  - cd ui && npm ci && cd ../
+  - cd zkp-utils && npm ci && cd ../
+  - cd zkp && npm ci
+  - yes | npm run setup -- -i gm17/ft-mint -s
 script:
-  - npm lint
+  - npm run lint
+  - ./zkp-demo-test.sh
+addons:
+  hosts:
+    - api.nightfall.docker
